@@ -1,0 +1,13 @@
+CREATE TABLE stu(
+	id INT NOT NULL,
+	student_name STRING,
+	student_sex	 STRING
+) WITH (
+'connector' = 'mysql-cdc',
+ 'hostname' = '192.168.0.108',
+ 'port' = '3306',
+ 'username' = 'root',
+ 'password' = '123456',
+ 'database-name' = 'school',
+ 'table-name' = 'statistics_guangzhi_student'
+)

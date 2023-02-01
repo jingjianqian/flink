@@ -13,11 +13,12 @@ import org.apache.flink.util.Collector;
 public class DataStreamJob {
 
 	public static void main(String[] args) throws Exception {
+
 		MySqlSource<String> mySqlSource = MySqlSource.<String>builder()
 				.hostname("192.168.1.108")
 				.port(3306)
 				.databaseList("school") // set captured database
-				.tableList("school.django_migrations") // set captured table
+				.tableList("school.statistics_guangzhi_student") // set captured table
 				.username("root")
 				.password("123456")
 				.serverTimeZone("UTC")
@@ -26,17 +27,17 @@ public class DataStreamJob {
 
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-		//读取目录下的文件
-		DataStreamSource<String> data = env.readTextFile("C:\\Program Files\\Docker\\Docker\\frontend\\resources\\app.asar.unpacked\\node_modules\\node-pty\\build\\deps\\winpty\\src\\Release\\obj\\winpty-agent\\winpty-agent.tlog\\CL.read.1.tlog");
-		//把文件中的内容按照空格进行拆分为 word,1    1 是为了能够在下面进行计算.
-		data.flatMap(new FlatMapFunction<String, Tuple2<String, Integer>>() {
-					@Override
-					public void flatMap(String s, Collector<Tuple2<String, Integer>> collector) throws Exception {
-						for (String word : s.split(" ")){
-							collector.collect(new Tuple2<>(word,1));
-						}
-					}
-				}).print();
+//		//读取目录下的文件
+//		DataStreamSource<String> data = env.readTextFile("C:\\Program Files\\Docker\\Docker\\frontend\\resources\\app.asar.unpacked\\node_modules\\node-pty\\build\\deps\\winpty\\src\\Release\\obj\\winpty-agent\\winpty-agent.tlog\\CL.read.1.tlog");
+//		//把文件中的内容按照空格进行拆分为 word,1    1 是为了能够在下面进行计算.
+//		data.flatMap(new FlatMapFunction<String, Tuple2<String, Integer>>() {
+//					@Override
+//					public void flatMap(String s, Collector<Tuple2<String, Integer>> collector) throws Exception {
+//						for (String word : s.split(" ")){
+//							collector.collect(new Tuple2<>(word,1));
+//						}
+//					}
+//				}).print();
 
 
 		env.enableCheckpointing(3000);
