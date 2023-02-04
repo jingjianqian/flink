@@ -10,4 +10,21 @@ CREATE TABLE stu(
  'password' = '123456',
  'database-name' = 'school',
  'table-name' = 'statistics_guangzhi_student'
-)
+);
+
+CREATE TABLE test (
+    ID INT NOT NULL,
+    TARGET_CODE STRING,
+    TARGET_NAME STRING,
+    PRIMARY KEY(ID) NOT ENFORCED
+ ) WITH (
+ 'connector' = 'oracle-cdc',
+ 'hostname' = '192.168.15.105',
+ 'port' = '1521',
+ 'username' = 'dwd_fnc',
+ 'password' = 'dwd_fnc',
+ 'database-name' = 'warehosetest',
+ 'schema-name' = 'DWD_FNC',
+ 'table-name' = 'T_DWD_FNC_TARGET_MONTH'
+ );
+
