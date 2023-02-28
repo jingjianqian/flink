@@ -1,3 +1,5 @@
 # Project exclude paths
-/flink-helloworld/target/
-/.idea/
+target
+out/*
+.idea
+/flink-batch/target/
